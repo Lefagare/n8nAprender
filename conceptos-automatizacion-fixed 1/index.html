@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptos Fundamentales de Automatización</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>Automatización: Conceptos Fundamentales</h1>
+            <p>Guía técnica completa para desarrollo de automatizaciones</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text" id="progressText">0/6 secciones</span>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="#intro" class="nav-link active" data-section="intro">🏠 Introducción</a></li>
+                <li><a href="#webhooks" class="nav-link" data-section="webhooks">🔗 Webhooks</a></li>
+                <li><a href="#json" class="nav-link" data-section="json">📄 JSON & Schemas</a></li>
+                <li><a href="#agents" class="nav-link" data-section="agents">🤖 Agentes</a></li>
+                <li><a href="#triggers" class="nav-link" data-section="triggers">⚡ Triggers</a></li>
+                <li><a href="#patterns" class="nav-link" data-section="patterns">🏗️ Patrones</a></li>
+                <li><a href="#implementation" class="nav-link" data-section="implementation">💻 Implementación</a></li>
+                <li><a href="#n8n-bootcamp" class="nav-link" data-section="n8n-bootcamp">🎓 n8n Bootcamp</a></li>
+                <li><a href="#pro-tools" class="nav-link" data-section="pro-tools">🧰 Kit Pro</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Introduction Section -->
+        <section id="intro" class="section active">
+            <div class="section-header">
+                <h2>Introducción a la Automatización</h2>
+                <p>Comprende los conceptos fundamentales que necesitas dominar</p>
+            </div>
+
+            <div class="intro-grid">
+                <div class="intro-card" data-navigate="webhooks">
+                    <div class="intro-card-icon">🔗</div>
+                    <h3>Webhooks</h3>
+                    <p>Comunicación en tiempo real entre sistemas mediante HTTP callbacks</p>
+                    <ul>
+                        <li>Configuración segura con HMAC</li>
+                        <li>Manejo de errores y reintentos</li>
+                        <li>Validación de signatures</li>
+                    </ul>
+                </div>
+
+                <div class="intro-card" data-navigate="json">
+                    <div class="intro-card-icon">📄</div>
+                    <h3>JSON & Schemas</h3>
+                    <p>Estructuración y validación de datos</p>
+                    <ul>
+                        <li>JSON Schema validation</li>
+                        <li>Type safety en APIs</li>
+                        <li>Transformaciones de datos</li>
+                    </ul>
+                </div>
+
+                <div class="intro-card" data-navigate="agents">
+                    <div class="intro-card-icon">🤖</div>
+                    <h3>Agentes Autónomos</h3>
+                    <p>Sistemas que razonan y toman decisiones</p>
+                    <ul>
+                        <li>Arquitectura ReAct</li>
+                        <li>Multi-agent systems</li>
+                        <li>Memory y context</li>
+                    </ul>
+                </div>
+
+                <div class="intro-card" data-navigate="triggers">
+                    <div class="intro-card-icon">⚡</div>
+                    <h3>Triggers</h3>
+                    <p>Mecanismos que inician automatizaciones</p>
+                    <ul>
+                        <li>Schedule triggers</li>
+                        <li>Event-driven</li>
+                        <li>Webhook triggers</li>
+                    </ul>
+                </div>
+
+                <div class="intro-card" data-navigate="patterns">
+                    <div class="intro-card-icon">🏗️</div>
+                    <h3>Patrones de Diseño</h3>
+                    <p>Arquitecturas probadas y robustas</p>
+                    <ul>
+                        <li>Circuit breaker</li>
+                        <li>Retry patterns</li>
+                        <li>Parallel processing</li>
+                    </ul>
+                </div>
+
+                <div class="intro-card" data-navigate="implementation">
+                    <div class="intro-card-icon">💻</div>
+                    <h3>Implementación</h3>
+                    <p>Guías paso a paso con ejemplos reales</p>
+                    <ul>
+                        <li>E-commerce automation</li>
+                        <li>CRM integration</li>
+                        <li>DevOps pipelines</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Webhooks Section -->
+        <section id="webhooks" class="section">
+            <div class="section-header">
+                <h2>🔗 Webhooks Fundamentales</h2>
+                <p>Comunicación en tiempo real entre sistemas</p>
+
+                <div class="concept-explanation">
+                    <div class="concept-card">
+                        <h3>¿Qué son los Webhooks? <span class="tooltip"
+                                data-tooltip="Los webhooks son notificaciones HTTP automáticas que se envían cuando ocurren eventos específicos">ℹ️</span>
+                        </h3>
+                        <p><strong>Definición técnica:</strong> HTTP callbacks que se ejecutan automáticamente cuando
+                            ocurren eventos específicos en un sistema fuente.</p>
+                        <p><strong>Analogía:</strong> Como un timbre que suena automáticamente cuando alguien llega a tu
+                            puerta, en lugar de que tengas que estar revisando constantemente.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="simulator">Simulador</button>
+                    <button class="tab-btn" data-tab="flow">Flujo</button>
+                    <button class="tab-btn" data-tab="security">Seguridad</button>
+                    <button class="tab-btn" data-tab="examples">Código</button>
+                </div>
+
+                <div class="tab-content active" id="simulator">
+                    <h3>Simulador de Webhooks Funcional</h3>
+                    <div class="webhook-simulator">
+                        <div class="simulator-controls">
+                            <div class="form-group">
+                                <label class="form-label">URL del Webhook <span class="tooltip"
+                                        data-tooltip="Endpoint donde se enviará el payload JSON">ℹ️</span></label>
+                                <input type="text" class="form-control" id="webhookUrl"
+                                    value="https://mi-sistema.com/webhook/orders">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Tipo de Payload <span class="tooltip"
+                                        data-tooltip="Selecciona el tipo de evento a simular">ℹ️</span></label>
+                                <select class="form-control" id="payloadType">
+                                    <option value="order.created">Orden E-commerce</option>
+                                    <option value="user.registered">Usuario Registrado</option>
+                                    <option value="payment.completed">Pago Completado</option>
+                                </select>
+                            </div>
+
+                            <div class="simulator-buttons">
+                                <button class="btn btn--primary" id="generatePayload">
+                                    <span class="btn-icon">🔄</span> Generar Nuevo Payload
+                                </button>
+                                <button class="btn btn--secondary" id="copyPayload">
+                                    <span class="btn-icon">📋</span> Copiar JSON
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="simulator-output">
+                            <div class="output-header">
+                                <h4>Payload Generado:</h4>
+                                <div class="validation-status" id="validationStatus">
+                                    <span class="status-indicator status-success">✓ JSON Válido</span>
+                                </div>
+                            </div>
+                            <div class="code-container">
+                                <pre><code class="language-json" id="simulatorPayload">// Haz clic en "Generar Nuevo Payload" para comenzar</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="webhook-headers">
+                            <h4>Headers HTTP que se enviarían:</h4>
+                            <div class="headers-display" id="headersDisplay">
+                                <div class="header-item">
+                                    <span class="header-name">Content-Type:</span>
+                                    <span class="header-value">application/json</span>
+                                </div>
+                                <div class="header-item">
+                                    <span class="header-name">User-Agent:</span>
+                                    <span class="header-value">WebhookService/2.0</span>
+                                </div>
+                                <div class="header-item">
+                                    <span class="header-name">X-Webhook-Signature:</span>
+                                    <span class="header-value" id="webhookSignature">sha256=...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="flow">
+                    <h3>Flujo Paso a Paso</h3>
+                    <div class="flow-diagram">
+                        <div class="flow-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Evento Ocurre</h4>
+                                <p>Un evento específico sucede en el sistema fuente</p>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Genera Payload</h4>
+                                <p>Sistema crea objeto JSON con datos del evento</p>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Envía POST Request</h4>
+                                <p>HTTP POST a URL configurada con payload JSON</p>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Procesa Datos</h4>
+                                <p>Sistema destino recibe y procesa información</p>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h4>Responde Status</h4>
+                                <p>Código HTTP 200-299 indica éxito</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="security">
+                    <h3>Implementación Segura</h3>
+                    <div class="security-features">
+                        <div class="security-item">
+                            <h4>🔐 Validación HMAC SHA256</h4>
+                            <p>Verifica que el webhook proviene del sistema autorizado usando signatures criptográficas.
+                            </p>
+                        </div>
+                        <div class="security-item">
+                            <h4>⏰ Verificación de Timestamps</h4>
+                            <p>Previene replay attacks validando que el webhook es reciente.</p>
+                        </div>
+                        <div class="security-item">
+                            <h4>🚫 Rate Limiting</h4>
+                            <p>Limita número de requests por minuto para prevenir abuso.</p>
+                        </div>
+                        <div class="security-item">
+                            <h4>🔒 HTTPS Obligatorio</h4>
+                            <p>Encripta datos en tránsito, nunca usar HTTP en producción.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="examples">
+                    <h3>Ejemplos de Implementación</h3>
+
+                    <div class="code-example">
+                        <div class="code-header">
+                            <h4>Webhook Endpoint con Validación HMAC</h4>
+                            <button class="copy-btn" data-copy="webhook-endpoint">📋 Copiar</button>
+                        </div>
+                        <pre><code class="language-javascript" id="webhook-endpoint">const express = require('express');
+const crypto = require('crypto');
+
+app.post('/webhook/orders', async (req, res) => {
+  try {
+    // Validar HMAC signature
+    const signature = req.headers['x-webhook-signature'];
+    const payload = JSON.stringify(req.body);
+    const secret = process.env.WEBHOOK_SECRET;
+    
+    const expectedSignature = crypto
+      .createHmac('sha256', secret)
+      .update(payload, 'utf8')
+      .digest('hex');
+    
+    if (!crypto.timingSafeEqual(
+      Buffer.from(signature, 'hex'),
+      Buffer.from(expectedSignature, 'hex')
+    )) {
+      return res.status(401).json({ error: 'Invalid signature' });
+    }
+    
+    // Procesar orden
+    const { orderId, customerEmail, items } = req.body.data;
+    await processOrder(orderId, customerEmail, items);
+    
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error('Webhook error:', error);
+    res.status(500).json({ error: 'Processing failed' });
+  }
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-quiz">
+                <h3>🧠 Quiz de Comprensión</h3>
+                <div class="quiz-question">
+                    <p><strong>¿Cuál es la principal ventaja de webhooks sobre polling?</strong></p>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="webhook-q1" value="a"> Mayor seguridad</label>
+                        <label><input type="radio" name="webhook-q1" value="b"> Comunicación en tiempo real</label>
+                        <label><input type="radio" name="webhook-q1" value="c"> Menor uso de CPU</label>
+                    </div>
+                    <button class="btn btn--secondary quiz-check" data-answer="b">Verificar Respuesta</button>
+                    <div class="quiz-result"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- JSON Section -->
+        <section id="json" class="section">
+            <div class="section-header">
+                <h2>📄 Estructura JSON y Schemas</h2>
+                <p>Formateo y validación de datos estructurados</p>
+            </div>
+
+            <div class="content-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="validator">Validador Robusto</button>
+                    <button class="tab-btn" data-tab="schema-basics">Schema Básico</button>
+                    <button class="tab-btn" data-tab="examples-json">Ejemplos</button>
+                </div>
+
+                <div class="tab-content active" id="validator">
+                    <h3>Validador JSON en Tiempo Real</h3>
+                    <div class="json-validator">
+                        <div class="validator-layout">
+                            <div class="json-input-section">
+                                <div class="input-header">
+                                    <label class="form-label">JSON Data <span class="tooltip"
+                                            data-tooltip="Ingresa tu JSON para validación en tiempo real">ℹ️</span></label>
+                                    <div class="input-controls">
+                                        <button class="btn btn--sm btn--secondary" id="loadValidExample">Ejemplo
+                                            Válido</button>
+                                        <button class="btn btn--sm btn--secondary" id="loadInvalidExample">Ejemplo
+                                            Inválido</button>
+                                        <button class="btn btn--sm btn--secondary" id="formatJson">Formatear</button>
+                                    </div>
+                                </div>
+                                <div class="textarea-container">
+                                    <textarea class="form-control json-textarea" id="jsonData" rows="12"
+                                        placeholder='{"name": "Juan", "email": "juan@ejemplo.com"}'></textarea>
+                                    <div class="line-numbers" id="lineNumbers"></div>
+                                </div>
+                            </div>
+
+                            <div class="validation-section">
+                                <div class="validation-header">
+                                    <h4>Resultado de Validación</h4>
+                                    <div class="validation-indicator" id="validationIndicator">
+                                        <span class="status-dot status-pending"></span>
+                                        <span class="status-text">Listo para validar</span>
+                                    </div>
+                                </div>
+                                <div class="validation-result" id="validationResult">
+                                    <p>Ingresa JSON en el editor para ver la validación en tiempo real.</p>
+                                </div>
+                                <div class="validation-details" id="validationDetails"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="schema-basics">
+                    <h3>JSON Schema Fundamentals</h3>
+                    <p><strong>JSON Schema</strong> define la estructura, tipos de datos y reglas de validación para
+                        documentos JSON.</p>
+
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <h4>🔍 Validación Automática</h4>
+                            <p>Valida datos automáticamente contra reglas definidas</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>📚 Documentación</h4>
+                            <p>Auto-genera documentación de APIs</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>🛡️ Type Safety</h4>
+                            <p>Garantiza tipos de datos correctos</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>🐛 Mejor Debugging</h4>
+                            <p>Errores más claros y específicos</p>
+                        </div>
+                    </div>
+
+                    <div class="code-example">
+                        <div class="code-header">
+                            <h4>Schema Completo de Usuario</h4>
+                            <button class="copy-btn" data-copy="user-schema">📋 Copiar</button>
+                        </div>
+                        <pre><code class="language-json" id="user-schema">{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Usuario",
+  "description": "Schema para validación de datos de usuario",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "ID único del usuario"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100,
+      "pattern": "^[A-Za-z\\s]+$"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "age": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 150
+    }
+  },
+  "required": ["id", "name", "email"],
+  "additionalProperties": false
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="examples-json">
+                    <h3>Ejemplos de JSON Válidos e Inválidos</h3>
+
+                    <div class="examples-grid">
+                        <div class="example-card success">
+                            <h4>✅ Ejemplo Válido</h4>
+                            <div class="code-example">
+                                <pre><code class="language-json">{
+  "id": 123,
+  "name": "Juan Pérez",
+  "email": "juan@ejemplo.com",
+  "age": 30
+}</code></pre>
+                            </div>
+                            <p class="example-note">Este JSON cumple con todos los requisitos del schema.</p>
+                        </div>
+
+                        <div class="example-card error">
+                            <h4>❌ Ejemplo Inválido</h4>
+                            <div class="code-example">
+                                <pre><code class="language-json">{
+  "name": "",
+  "email": "invalid-email",
+  "age": -5
+}</code></pre>
+                            </div>
+                            <p class="example-note">Errores: falta ID, nombre vacío, email inválido, edad negativa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agents Section -->
+        <section id="agents" class="section">
+            <div class="section-header">
+                <h2>🤖 Agentes de Automatización</h2>
+                <p>Sistemas autónomos que razonan y toman decisiones</p>
+            </div>
+
+            <div class="agent-architecture">
+                <h3>Arquitectura de un Agente</h3>
+                <div class="architecture-diagram">
+                    <div class="arch-component">
+                        <h4>👁️ Percepción</h4>
+                        <p>Recibe y procesa inputs del entorno</p>
+                    </div>
+                    <div class="arch-component">
+                        <h4>🧠 Razonamiento</h4>
+                        <p>Analiza información y planifica acciones</p>
+                    </div>
+                    <div class="arch-component">
+                        <h4>💾 Memoria</h4>
+                        <p>Almacena contexto e historial</p>
+                    </div>
+                    <div class="arch-component">
+                        <h4>⚡ Acción</h4>
+                        <p>Ejecuta tareas y utiliza herramientas</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-example">
+                <div class="code-header">
+                    <h4>Implementación de Agente ReAct</h4>
+                    <button class="copy-btn" data-copy="react-agent">📋 Copiar</button>
+                </div>
+                <pre><code class="language-python" id="react-agent">class ReactAgent:
+    def __init__(self, llm, tools, memory):
+        self.llm = llm
+        self.tools = tools
+        self.memory = memory
+        self.max_iterations = 10
+    
+    async def execute(self, goal):
+        context = self.memory.get_context()
+        
+        for iteration in range(self.max_iterations):
+            # Reasoning phase
+            thought = await self.llm.generate(
+                prompt=f"""Goal: {goal}
+                Context: {context}
+                
+                Think step by step. What should I do next?
+                
+                Thought:"""
+            )
+            
+            # Action phase
+            if self.should_take_action(thought):
+                action = await self.select_action(thought)
+                result = await self.execute_action(action)
+                context += f"\nAction: {action}\nResult: {result}"
+                
+                if self.is_goal_achieved(goal, context):
+                    return self.format_success_response(context)
+        
+        return self.format_timeout_response()</code></pre>
+            </div>
+        </section>
+
+        <!-- Triggers Section -->
+        <section id="triggers" class="section">
+            <div class="section-header">
+                <h2>⚡ Triggers y Eventos</h2>
+                <p>Mecanismos que inician automatizaciones</p>
+            </div>
+
+            <div class="triggers-grid">
+                <div class="trigger-card">
+                    <h3>📅 Manual Trigger</h3>
+                    <p><strong>Descripción:</strong> Ejecutado manualmente por usuario</p>
+                    <p><strong>Uso típico:</strong> Reportes bajo demanda, procesos administrativos</p>
+                    <div class="trigger-example">
+                        <strong>Ejemplo:</strong> Botón "Generar Reporte Mensual"
+                    </div>
+                </div>
+
+                <div class="trigger-card">
+                    <h3>⏰ Schedule Trigger</h3>
+                    <p><strong>Descripción:</strong> Ejecutado en horarios específicos</p>
+                    <p><strong>Uso típico:</strong> Backups diarios, reportes semanales</p>
+                    <div class="trigger-example">
+                        <strong>Ejemplo:</strong> Cron "0 9 * * 1-5" (Lunes a Viernes 9AM)
+                    </div>
+                </div>
+
+                <div class="trigger-card">
+                    <h3>🔗 Webhook Trigger</h3>
+                    <p><strong>Descripción:</strong> Activado por llamadas HTTP externas</p>
+                    <p><strong>Uso típico:</strong> Integración en tiempo real</p>
+                    <div class="trigger-example">
+                        <strong>Ejemplo:</strong> Nuevo pedido desde tienda online
+                    </div>
+                </div>
+
+                <div class="trigger-card">
+                    <h3>🎯 Event Trigger</h3>
+                    <p><strong>Descripción:</strong> Responde a eventos del sistema</p>
+                    <p><strong>Uso típico:</strong> Procesar nuevos registros, cambios de estado</p>
+                    <div class="trigger-example">
+                        <strong>Ejemplo:</strong> Nuevo archivo subido
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Patterns Section -->
+        <section id="patterns" class="section">
+            <div class="section-header">
+                <h2>🏗️ Patrones de Diseño</h2>
+                <p>Arquitecturas probadas para automatización robusta</p>
+            </div>
+
+            <div class="patterns-comparison">
+                <div class="pattern-item">
+                    <h3>🔄 Sequential Pattern</h3>
+                    <p><strong>Descripción:</strong> Ejecuta acciones una tras otra en orden específico</p>
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ Ventajas:</h4>
+                            <ul>
+                                <li>Fácil debugging</li>
+                                <li>Orden garantizado</li>
+                                <li>Predecible</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>❌ Desventajas:</h4>
+                            <ul>
+                                <li>Más lento</li>
+                                <li>Bloqueo en errores</li>
+                                <li>Uso ineficiente de recursos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pattern-item">
+                    <h3>⚡ Parallel Pattern</h3>
+                    <p><strong>Descripción:</strong> Ejecuta múltiples acciones simultáneamente</p>
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ Ventajas:</h4>
+                            <ul>
+                                <li>Mayor velocidad</li>
+                                <li>Eficiencia de recursos</li>
+                                <li>Escalabilidad</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>❌ Desventajas:</h4>
+                            <ul>
+                                <li>Complejo debugging</li>
+                                <li>Race conditions</li>
+                                <li>Manejo de errores complejo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation Section -->
+        <section id="implementation" class="section">
+            <div class="section-header">
+                <h2>💻 Implementación Práctica</h2>
+                <p>Ejemplo completo de sistema de e-commerce automatizado</p>
+            </div>
+
+            <div class="implementation-overview">
+                <h3>Sistema de Procesamiento de Órdenes</h3>
+                <p>Un orquestador completo que maneja el ciclo de vida de órdenes de e-commerce con patrones de
+                    automatización robustos.</p>
+            </div>
+
+            <div class="code-example">
+                <div class="code-header">
+                    <h4>Orquestador Principal de Órdenes</h4>
+                    <button class="copy-btn" data-copy="order-orchestrator">📋 Copiar</button>
+                </div>
+                <pre><code class="language-javascript" id="order-orchestrator">// Orquestador principal de órdenes
+class OrderOrchestrator {
+  constructor() {
+    this.workflows = new Map();
+    this.setupWorkflows();
+  }
+  
+  setupWorkflows() {
+    this.workflows.set('process_order', {
+      steps: [
+        { name: 'validate_inventory', timeout: 30000, critical: true },
+        { name: 'process_payment', timeout: 45000, critical: true },
+        { name: 'update_crm', timeout: 15000, critical: false },
+        { name: 'send_confirmation', timeout: 10000, critical: false }
+      ],
+      error_handling: {
+        retry_attempts: 3,
+        backoff_strategy: 'exponential'
+      }
+    });
+  }
+  
+  async processOrder(orderData) {
+    const workflowId = `order_${orderData.id}_${Date.now()}`;
+    
+    try {
+      const results = {};
+      
+      for (const step of this.workflows.get('process_order').steps) {
+        try {
+          results[step.name] = await this.executeStep(
+            step.name, 
+            orderData, 
+            step.timeout
+          );
+        } catch (error) {
+          if (step.critical) {
+            throw new Error(`Critical step ${step.name} failed`);
+          }
+          results[step.name] = { error: error.message, skipped: true };
+        }
+      }
+      
+      return { success: true, workflowId, results };
+      
+    } catch (error) {
+      return this.handleWorkflowFailure(workflowId, error, orderData);
+    }
+  }
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- ========================= -->
+        <!-- 🎓 n8n Bootcamp (Principiantes a Intermedio) -->
+        <!-- ========================= -->
+        <section id="n8n-bootcamp" class="section">
+            <div class="section-header">
+                <h2>🎓 n8n Bootcamp</h2>
+                <p>Aprende n8n desde cero con módulos cortos, ejercicios y checklist</p>
+            </div>
+
+            <div class="content-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="bootcamp-roadmap">Ruta</button>
+                    <button class="tab-btn" data-tab="bootcamp-lessons">Lecciones</button>
+                    <button class="tab-btn" data-tab="bootcamp-challenges">Retos</button>
+                    <button class="tab-btn" data-tab="bootcamp-progress">Progreso</button>
+                </div>
+
+                <!-- Ruta -->
+                <div class="tab-content active" id="bootcamp-roadmap">
+                    <ol class="roadmap">
+                        <li><strong>Instalación & Conceptos</strong>: qué es n8n, nodos, credenciales, ejecuciones.</li>
+                        <li><strong>Primer workflow</strong>: Trigger → Transform → Acción (ej.: Webhook → Function →
+                            HTTP Request).</li>
+                        <li><strong>Datos & Mapeo</strong>: $json, binary, expresiones, referencias entre nodos.</li>
+                        <li><strong>Errores & Reintentos</strong>: error branches, retry, backoff.</li>
+                        <li><strong>Programación (cron)</strong>: tareas recurrentes y ventanas de ejecución.</li>
+                        <li><strong>Buenas prácticas</strong>: versionado, modularización, observabilidad.</li>
+                    </ol>
+                    <div class="status status--info mt-8">Consejo: completa la lista en orden para dominar las bases.
+                    </div>
+                </div>
+
+                <!-- Lecciones (teoría + práctica guiada) -->
+                <div class="tab-content" id="bootcamp-lessons">
+                    <div class="lesson-grid">
+                        <article class="card">
+                            <div class="card__body">
+                                <h4>Lección 1 — Tu primer Webhook</h4>
+                                <p><strong>Objetivo:</strong> Recibir un POST y responder con datos transformados.</p>
+                                <ol>
+                                    <li>Crea un <em>Webhook Trigger</em> en n8n.</li>
+                                    <li>Añade un <em>Function</em> node que haga `return [{ saludo: "Hola " + $json.name
+                                        }]`.</li>
+                                    <li>Conecta a <em>Respond to Webhook</em> con el JSON resultante.</li>
+                                </ol>
+                                <button class="btn btn--secondary btn--sm mt-8" data-open="bootcamp-sender">Probar con
+                                    el Simulador</button>
+                            </div>
+                        </article>
+
+                        <article class="card">
+                            <div class="card__body">
+                                <h4>Lección 2 — HTTP Request + Expresiones</h4>
+                                <p>Consumir una API y mapear respuesta con <code>{{$json}}</code> en otro nodo.</p>
+                                <ul>
+                                    <li>Entiende <code>{{$json.campo}}</code> y plantillas.</li>
+                                    <li>Ejemplo: GET a una API pública y formatear el output.</li>
+                                </ul>
+                            </div>
+                        </article>
+
+                        <article class="card">
+                            <div class="card__body">
+                                <h4>Lección 3 — Schedules (CRON)</h4>
+                                <p>Configura un <em>Cron</em> Trigger para ejecutar diariamente.</p>
+                                <button class="btn btn--outline btn--sm" data-open="cron-builder">Abrir Cron
+                                    Builder</button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Retos -->
+                <div class="tab-content" id="bootcamp-challenges">
+                    <div class="card">
+                        <div class="card__body">
+                            <h4>Reto: Limpieza de Emails duplicados</h4>
+                            <p>Entrada: lista JSON con emails; Tarea: normalizar, deduplicar, contar dominos, exportar
+                                CSV.</p>
+                            <ul>
+                                <li>Trigger: Webhook | Nodos: Function, IF, Code, Spreadsheet File</li>
+                                <li>Entrega: URL del webhook + muestra de salida</li>
+                            </ul>
+                            <button class="btn btn--primary btn--sm" id="saveChallengeState">Guardar estado</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progreso -->
+                <div class="tab-content" id="bootcamp-progress">
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h4>Tu Progreso</h4>
+                            <p>Se guarda localmente en tu navegador.</p>
+                        </div>
+                        <div class="flex gap-8">
+                            <button class="btn btn--secondary btn--sm" id="exportProgress">Exportar</button>
+                            <label class="btn btn--outline btn--sm">
+                                Importar
+                                <input type="file" id="importProgress" accept="application/json" style="display:none;">
+                            </label>
+                        </div>
+                    </div>
+                    <div id="bootcampProgressView"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================= -->
+        <!-- 🧰 Kit Pro (Expertos) -->
+        <!-- ========================= -->
+        <section id="pro-tools" class="section">
+            <div class="section-header">
+                <h2>🧰 Kit Pro</h2>
+                <p>Herramientas avanzadas para diseñar, probar y optimizar flujos</p>
+            </div>
+
+            <div class="content-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="composer">Workflow Composer</button>
+                    <button class="tab-btn" data-tab="cron">Cron Builder</button>
+                    <button class="tab-btn" data-tab="retry">Retry & Backoff</button>
+                    <button class="tab-btn" data-tab="ratelimit">Rate Limiter</button>
+                    <button class="tab-btn" data-tab="expr">Expression Tester</button>
+                    <button class="tab-btn" data-tab="schemas">Schemas</button>
+                </div>
+
+                <!-- Composer -->
+                <div class="tab-content active" id="composer">
+                    <h3>Workflow Composer (simulación)</h3>
+                    <div class="grid-2">
+                        <div>
+                            <label class="form-label">Nodos (JSON)</label>
+                            <textarea id="composerNodes" class="form-control" rows="8"
+                                placeholder='[{"id":"A","type":"trigger"},{"id":"B","type":"function"},{"id":"C","type":"http"}]'></textarea>
+                            <label class="form-label mt-8">Conexiones (JSON)</label>
+                            <textarea id="composerEdges" class="form-control" rows="6"
+                                placeholder='[["A","B"],["B","C"]]'></textarea>
+                            <label class="form-label mt-8">Entrada inicial (JSON)</label>
+                            <textarea id="composerInput" class="form-control" rows="4"
+                                placeholder='{"name":"Marta"}'></textarea>
+                            <div class="mt-8">
+                                <button class="btn btn--primary" id="simulateFlow">Simular</button>
+                                <button class="btn btn--secondary" id="clearFlow">Limpiar</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label">Orden de ejecución & eventos</label>
+                            <pre><code id="composerOutput" class="language-json">{}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cron -->
+                <div class="tab-content" id="cron">
+                    <h3>Generador CRON</h3>
+                    <div class="grid-2">
+                        <div class="card">
+                            <div class="card__body">
+                                <label class="form-label">Expresión</label>
+                                <input id="cronExpr" class="form-control" placeholder="*/5 * * * *">
+                                <div class="mt-8">
+                                    <button class="btn btn--primary" id="cronPreview">Previsualizar 10
+                                        ejecuciones</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__body">
+                                <pre><code id="cronOutput" class="language-json">[]</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Retry & Backoff -->
+                <div class="tab-content" id="retry">
+                    <h3>Simulador de Reintentos</h3>
+                    <div class="grid-2">
+                        <div>
+                            <label class="form-label">Intentos máx</label>
+                            <input id="retryMax" class="form-control" type="number" value="5">
+                            <label class="form-label mt-8">Base (ms)</label>
+                            <input id="retryBase" class="form-control" type="number" value="500">
+                            <label class="form-label mt-8">Jitter</label>
+                            <select id="retryJitter" class="form-control">
+                                <option value="none">Sin jitter</option>
+                                <option value="full">Full jitter</option>
+                            </select>
+                            <div class="mt-8">
+                                <button class="btn btn--primary" id="retrySim">Simular</button>
+                            </div>
+                        </div>
+                        <div>
+                            <pre><code id="retryOutput" class="language-json">[]</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rate Limiter -->
+                <div class="tab-content" id="ratelimit">
+                    <h3>Rate Limiter (ventana fija)</h3>
+                    <div class="grid-2">
+                        <div>
+                            <label class="form-label">Límite por minuto</label>
+                            <input id="rlLimit" class="form-control" type="number" value="60">
+                            <label class="form-label mt-8">Solicitudes simuladas</label>
+                            <input id="rlRequests" class="form-control" type="number" value="120">
+                            <div class="mt-8">
+                                <button class="btn btn--primary" id="rlSim">Simular</button>
+                            </div>
+                        </div>
+                        <div>
+                            <pre><code id="rlOutput" class="language-json">[]</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expression Tester -->
+                <div class="tab-content" id="expr">
+                    <h3>Expression Tester (estilo n8n)</h3>
+                    <div class="grid-2">
+                        <div>
+                            <label class="form-label">Contexto JSON (ej.: $json)</label>
+                            <textarea id="exprCtx" class="form-control"
+                                rows="6">{ "name": "Ana", "price": 19.9 }</textarea>
+                            <label class="form-label mt-8">Expresión (ej.: {{$json.name}})</label>
+                            <input id="exprInput" class="form-control" placeholder="{{$json.name}} - {{$json.price}}">
+                            <div class="mt-8">
+                                <button class="btn btn--primary" id="exprRun">Evaluar</button>
+                            </div>
+                        </div>
+                        <div>
+                            <pre><code id="exprOutput" class="language-json">""</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schemas -->
+                <div class="tab-content" id="schemas">
+                    <h3>Plantillas JSON Schema</h3>
+                    <p>Usa estos schemas como contrato entre nodos (entrada/salida).</p>
+                    <pre><code class="language-json">{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contacto",
+  "type": "object",
+  "properties": {
+    "email": { "type": "string", "format": "email" },
+    "name":  { "type": "string", "minLength": 1 }
+  },
+  "required": ["email","name"],
+  "additionalProperties": false
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 - Guía Completa de Automatización. Todos los conceptos explicados con ejemplos prácticos.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
